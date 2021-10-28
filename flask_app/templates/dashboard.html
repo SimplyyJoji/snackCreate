@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbortary</title>
+</head>
+
+<body>
+  <a href="/mytrees">My Trees</a>
+
+  <a href="/tree/new">Plant a tree</a>
+  <a href="/logout">Logout</a>
+  <h1>Arbortary</h1>
+  <p>A site to track randomly planted trees</p>
+  <h1>Welcome {{user.full_name}}</h1>
+
+  <br>
+  <br>
+  <br>
+  <!-- <a href="/user/{{user.id}}/delete">Delete</a> -->
+
+  <!-- <a href="/logout"><button>Log Out</button></a> -->
+
+  <table>
+    <thead>
+      <tr>
+        <th>Species</th>
+        <th>Planted By</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    {% for tree in all_trees %}
+    <tr>
+      <td>{{tree.name}}</td>
+      <td>{{tree.tree_to_user.first_name}} {{tree.tree_to_user.last_name}}</td>
+      {% if tree.tree_to_user.id == session['uuid'] %}
+      <td> <a href="/show/{{tree.id}}">Details</a> </td>
+
+
+      {% endif %}
+      {% endfor %}
+    </tr>
+
+  </table>
+</body>
+
+</html>
